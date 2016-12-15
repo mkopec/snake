@@ -129,12 +129,12 @@ int main(int, char**) {
             continue;
         }
 
-        /* Skracanie węża, a następnie jego przesunięcie i ewentualne przedłużenie */
-        shortenSnake(board);
+        /* Przesunięcie i ewentualne predłużenie węża */
         updatePosition(&posX, &posY, direction);
-        if (board[posX][posY] == -1) {
+        if (board[posX][posY] == -1)
             length += 1;
-        }
+        else
+            shortenSnake(board);
         board[posX][posY] = length;
 
         /* Rysowanie planszy i węża */
