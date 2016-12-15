@@ -1,0 +1,7 @@
+/home/mkopec/Dokumenty/Programowanie/SDL/Snake/cmake/CMakeFiles/install.dir
+/home/mkopec/Dokumenty/Programowanie/SDL/Snake/cmake/CMakeFiles/list_install_components.dir
+/home/mkopec/Dokumenty/Programowanie/SDL/Snake/cmake/CMakeFiles/rebuild_cache.dir
+/home/mkopec/Dokumenty/Programowanie/SDL/Snake/cmake/CMakeFiles/Snake.dir
+/home/mkopec/Dokumenty/Programowanie/SDL/Snake/cmake/CMakeFiles/install/strip.dir
+/home/mkopec/Dokumenty/Programowanie/SDL/Snake/cmake/CMakeFiles/install/local.dir
+/home/mkopec/Dokumenty/Programowanie/SDL/Snake/cmake/CMakeFiles/edit_cache.dir
