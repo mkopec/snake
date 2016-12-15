@@ -41,7 +41,6 @@ void drawSnake(SDL_Texture *segment, SDL_Renderer *renderer, std::vector<std::ve
 
             if (board[j][i] > 0) {
                 renderTexture(segment, renderer, x, y);
-                std::cout << i << " " << j << " " << board[j][i] << std::endl;
             }
         }
     }
@@ -88,11 +87,11 @@ void drawWall(SDL_Texture *wall, SDL_Renderer *renderer, std::vector<std::vector
 void flashSnake(SDL_Texture *segment_a, SDL_Texture *segment_b, SDL_Renderer *renderer, std::vector<std::vector<int>>& board, int n) {
     for (int i = 0; i < n; ++i) {
         drawSnake(segment_b, renderer, board);
-        SDL_Delay(500);
+        SDL_Delay(200);
         SDL_RenderPresent(renderer);
 
         drawSnake(segment_a, renderer, board);
-        SDL_Delay(500);
+        SDL_Delay(200);
         SDL_RenderPresent(renderer);
     }
 }

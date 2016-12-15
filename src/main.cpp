@@ -34,15 +34,16 @@ SDL_Texture* loadTexture(const std::string &file, SDL_Renderer *ren) {
 }
 
 int main(int, char**) {
-    /* Start RNG for food generation */
+    /* Generator liczb losowych do losowania pozycji jedzenia */
     srand(time(NULL));
 
-    /* Starting SDL */
+    /* Uruchamianie SDL */
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
         logSDLError(std::cout, "SDL_Init");
         return 1;
     }
 
+    /* Tworzenie okna */
     SDL_Window *window = SDL_CreateWindow("Snake!", 100, 100, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
     if (window == nullptr) {
         logSDLError(std::cout, "CreateWindow");
@@ -50,6 +51,7 @@ int main(int, char**) {
         return 1;
     }
 
+    /* Tworzenie renderera dla okna */
     SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED || SDL_RENDERER_PRESENTVSYNC);
     if (renderer == nullptr) {
         logSDLError(std::cout, "CreateRenderer");
@@ -58,6 +60,7 @@ int main(int, char**) {
         return 1;
     }
 
+    /* Ładowanie tekstur */
     const std::string resPath = getResourcePath();
     SDL_Texture *segment = loadTexture(resPath + "segment.bmp", renderer);
     SDL_Texture *food = loadTexture(resPath + "food.bmp", renderer);
@@ -68,28 +71,28 @@ int main(int, char**) {
         return 1;
     }
 
-    //int board[BOARD_WIDTH][BOARD_HEIGHT] = { 0 };
+    /* Utworzenie planszy i ścian */
     std::vector<std::vector<int>> board (BOARD_WIDTH, std::vector<int> (BOARD_HEIGHT, 0));
     generateWall(board);
 
-    SDL_RenderClear(renderer);
-
+    /* Inicjalizacja zmiennych dla logiki gry */
     bool quit = false;
-    SDL_Event e;
     int direction, length;
     int posX, posY;
+    SDL_Event e;
 
     posX = posY = 1;
     length = 3;
     direction = 1;
 
-
     while (!quit) {
+        /* Obsługa zdarzeń i klawiatury */
         while (SDL_PollEvent(&e)) {
             if (e.type == SDL_QUIT) {
                 quit = true;
             }
 
+            /* Kierunki: 0 - Góra, 1 - Prawo, 2 - Dół, 3 - Lewo */
             if (e.type == SDL_KEYDOWN){
     			switch (e.key.keysym.sym) {
                     case SDLK_UP:
@@ -114,32 +117,32 @@ int main(int, char**) {
     		}
         }
 
+        /* Sprawdzanie kolizji ma miejsce przed zmianą pozycji węża */
         if (checkIfLost(posX, posY, direction, board)) {
             std::cout << "Przegrałeś!" << std::endl;
             std::cout << "Twój wynik to: " << length - 3 << std::endl;
-            std::cout << "Ostatnia pozycja: " << board[posX][posY] << std::endl;
 
+            /* Podwójne świecenie wężem przy przegranej */
             flashSnake(segment, food, renderer, board, 2);
 
             quit = true;
             continue;
         }
 
+        /* Skracanie węża, a następnie jego przesunięcie i ewentualne przedłużenie */
         shortenSnake(board);
         updatePosition(&posX, &posY, direction);
-
         if (board[posX][posY] == -1) {
             length += 1;
         }
-
         board[posX][posY] = length;
 
+        /* Rysowanie planszy i węża */
         SDL_RenderClear(renderer);
         drawWall(wall, renderer, board);
         drawFood(food, renderer, board);
         drawSnake(segment, renderer, board);
         SDL_RenderPresent(renderer);
-
 
         SDL_Delay(70);
     }
