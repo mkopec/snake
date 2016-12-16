@@ -116,6 +116,7 @@ CMakeFiles/Snake.dir/src/main.cpp.o: /usr/include/SDL2/SDL_gamecontroller.h
 CMakeFiles/Snake.dir/src/main.cpp.o: /usr/include/SDL2/SDL_gesture.h
 CMakeFiles/Snake.dir/src/main.cpp.o: /usr/include/SDL2/SDL_haptic.h
 CMakeFiles/Snake.dir/src/main.cpp.o: /usr/include/SDL2/SDL_hints.h
+CMakeFiles/Snake.dir/src/main.cpp.o: /usr/include/SDL2/SDL_image.h
 CMakeFiles/Snake.dir/src/main.cpp.o: /usr/include/SDL2/SDL_joystick.h
 CMakeFiles/Snake.dir/src/main.cpp.o: /usr/include/SDL2/SDL_keyboard.h
 CMakeFiles/Snake.dir/src/main.cpp.o: /usr/include/SDL2/SDL_keycode.h

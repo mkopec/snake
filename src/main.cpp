@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include <time.h>
 #include <SDL.h>
+#include <SDL_image.h>
 #include "res_path.h"
 #include "cleanup.h"
 #include "drawing.h"
@@ -17,7 +18,7 @@ SDL_Texture* loadTexture(const std::string &file, SDL_Renderer *ren) {
     // Initialize to nullptr to avoid danglingpointer issues
     SDL_Texture *texture = nullptr;
     // Load the image
-    SDL_Surface *loadedImage = SDL_LoadBMP(file.c_str());
+    SDL_Surface *loadedImage = IMG_Load(file.c_str());
     // If the loading went ok, convert to texture and return the texture
     if (loadedImage != nullptr) {
         texture = SDL_CreateTextureFromSurface(ren, loadedImage);
@@ -62,9 +63,11 @@ int main(int, char**) {
 
     /* Ładowanie tekstur */
     const std::string resPath = getResourcePath();
-    SDL_Texture *segment = loadTexture(resPath + "segment.bmp", renderer);
-    SDL_Texture *food = loadTexture(resPath + "food.bmp", renderer);
-    SDL_Texture *wall = loadTexture(resPath + "segment.bmp", renderer);
+    SDL_Texture *segment = IMG_LoadTexture(renderer, (resPath + "segment.png").c_str());
+    SDL_Texture *food = IMG_LoadTexture(renderer, (resPath + "dead.png").c_str());
+    SDL_Texture *wall = IMG_LoadTexture(renderer, (resPath + "segment.png").c_str());
+    SDL_Texture *dead = IMG_LoadTexture(renderer, (resPath + "dead.png").c_str());
+    SDL_Texture *field = IMG_LoadTexture(renderer, (resPath + "field.png").c_str());
     if (segment == nullptr || food == nullptr || wall == nullptr) {
         cleanup(segment, renderer, window);
         SDL_Quit();
@@ -127,7 +130,7 @@ int main(int, char**) {
             std::cout << "Twój wynik to: " << length - 3 << std::endl;
 
             /* Podwójne świecenie wężem przy przegranej */
-            flashSnake(segment, food, renderer, board, 2);
+            flashSnake(segment, dead, renderer, board, 2);
 
             quit = true;
             continue;
@@ -143,6 +146,7 @@ int main(int, char**) {
 
         /* Rysowanie planszy i węża */
         SDL_RenderClear(renderer);
+        drawBackground(field, renderer, board);
         drawWall(wall, renderer, board);
         drawFood(food, renderer, board);
         drawSnake(segment, renderer, board);

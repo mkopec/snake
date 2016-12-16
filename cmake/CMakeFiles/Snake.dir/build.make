@@ -143,6 +143,7 @@ Snake: CMakeFiles/Snake.dir/src/drawing.cpp.o
 Snake: CMakeFiles/Snake.dir/src/main.cpp.o
 Snake: CMakeFiles/Snake.dir/build.make
 Snake: /usr/lib/libSDL2.so
+Snake: /usr/lib64/libSDL2_image.so
 Snake: CMakeFiles/Snake.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/mkopec/Dokumenty/Programowanie/SDL/Snake/cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable Snake"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Snake.dir/link.txt --verbose=$(VERBOSE)

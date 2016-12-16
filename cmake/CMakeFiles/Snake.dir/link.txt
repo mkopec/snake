@@ -1,1 +1,1 @@
-/usr/bin/c++    -Wall -Wextra -pedantic -std=c++11  -Wall -Wextra -pedantic -std=c++11 -g -g   CMakeFiles/Snake.dir/src/logic.cpp.o CMakeFiles/Snake.dir/src/drawing.cpp.o CMakeFiles/Snake.dir/src/main.cpp.o  -o Snake -rdynamic -lSDL2 
+/usr/bin/c++    -Wall -Wextra -pedantic -std=c++11  -Wall -Wextra -pedantic -std=c++11 -g -g   CMakeFiles/Snake.dir/src/logic.cpp.o CMakeFiles/Snake.dir/src/drawing.cpp.o CMakeFiles/Snake.dir/src/main.cpp.o  -o Snake -rdynamic -lSDL2 -lSDL2_image 

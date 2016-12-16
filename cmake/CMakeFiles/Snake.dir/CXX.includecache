@@ -75,6 +75,8 @@ time.h
 -
 SDL.h
 -
+SDL_image.h
+-
 res_path.h
 /home/mkopec/Dokumenty/Programowanie/SDL/Snake/src/res_path.h
 cleanup.h
@@ -319,6 +321,16 @@ close_code.h
 /usr/include/SDL2/SDL_hints.h
 SDL_stdinc.h
 /usr/include/SDL2/SDL_stdinc.h
+begin_code.h
+/usr/include/SDL2/begin_code.h
+close_code.h
+/usr/include/SDL2/close_code.h
+
+/usr/include/SDL2/SDL_image.h
+SDL.h
+/usr/include/SDL2/SDL.h
+SDL_version.h
+/usr/include/SDL2/SDL_version.h
 begin_code.h
 /usr/include/SDL2/begin_code.h
 close_code.h

@@ -84,6 +84,19 @@ void drawWall(SDL_Texture *wall, SDL_Renderer *renderer, std::vector<std::vector
     }
 }
 
+void drawBackground(SDL_Texture *field, SDL_Renderer *renderer, std::vector<std::vector<int>>& board){
+    int x, y, h, w, i, j;
+    SDL_QueryTexture(field, NULL, NULL, &h, &w);
+    for (i = 0; i < BOARD_HEIGHT; ++i) {
+        for (j = 0; j < BOARD_WIDTH; ++j) {
+            x = j * w;
+            y = i * h;
+            renderTexture(field, renderer, x, y);
+        }
+    }
+}
+
+
 void flashSnake(SDL_Texture *segment_a, SDL_Texture *segment_b, SDL_Renderer *renderer, std::vector<std::vector<int>>& board, int n) {
     for (int i = 0; i < n; ++i) {
         drawSnake(segment_b, renderer, board);
