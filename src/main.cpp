@@ -77,14 +77,15 @@ int main(int, char**) {
 
     /* Inicjalizacja zmiennych dla logiki gry */
     bool quit = false;
-    int direction, length;
+    int direction, length, newDirection;
     int posX, posY;
     SDL_Event e;
 
     posX = posY = 1;
     length = 3;
-    direction = 1;
+    newDirection = 1;
 
+    /* Główna pętla gry */
     while (!quit) {
         /* Obsługa zdarzeń i klawiatury */
         while (SDL_PollEvent(&e)) {
@@ -97,19 +98,19 @@ int main(int, char**) {
     			switch (e.key.keysym.sym) {
                     case SDLK_UP:
                         if (direction != 2)
-                            direction = 0;
+                            newDirection = 0;
                         break;
                     case SDLK_RIGHT:
                         if (direction != 3)
-                        direction = 1;
+                            newDirection = 1;
                         break;
                     case SDLK_DOWN:
                         if (direction != 0)
-                            direction = 2;
+                            newDirection = 2;
                         break;
                     case SDLK_LEFT:
                         if (direction != 1)
-                            direction = 3;
+                            newDirection = 3;
                         break;
                     default:
                         break;
@@ -117,7 +118,10 @@ int main(int, char**) {
     		}
         }
 
-        /* Sprawdzanie kolizji ma miejsce przed zmianą pozycji węża */
+        /* Dzięki temu nie da się zawrócić w miejscu */
+        direction = newDirection;
+
+        /* Sprawdzanie kolizji przed zmianą pozycji węża */
         if (checkIfLost(posX, posY, direction, board)) {
             std::cout << "Przegrałeś!" << std::endl;
             std::cout << "Twój wynik to: " << length - 3 << std::endl;
